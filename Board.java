@@ -69,13 +69,13 @@ public abstract class Board {
             // If start row matches end row, ship is horizontal
             if (startRow == endRow) {
                 for (int col = startCol; col < endCol; col++) {
-                    layout.get(startRow).add(col, shipType);
+                    layout.get(startRow).set(col, shipType);
                 }
             }
             // Otherwise, ship is vertical.
             else {
                 for (int row = startRow; row < endRow; row++) {
-                    layout.get(row).add(startCol, shipType);
+                    layout.get(row).set(startCol, shipType);
                 }
             }
         }
