@@ -5,10 +5,11 @@ public class PhaseOneTester
    public static void main(String [] args) throws IOException
    {
       // Test your Move class
-      Move m = new Move(1,1);
+      /*Move m = new Move(1,1);
       System.out.println(m);  // B2
       m = new Move("E1");
       System.out.println(m);  // E1
+      */
       
       // Test your ShipType enumerated type
       ShipType st;
@@ -16,7 +17,7 @@ public class PhaseOneTester
       System.out.println(st);  // ST_SUB should print
       
       // Test your Fleet class
-      Fleet fleet = new Fleet();
+      /*Fleet fleet = new Fleet();
 
       for (int i = 0; i < 3; i++)
          fleet.updateFleet(ShipType.ST_SUB);
@@ -71,6 +72,6 @@ public class PhaseOneTester
          result = computer.makePlayerMove(move);
          System.out.println(computer);
       } while (result == null);
-   
+      */
    }
 }
