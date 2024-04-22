@@ -17,7 +17,7 @@ public class PhaseOneTester
       System.out.println(st);  // ST_SUB should print
       
       // Test your Fleet class
-      /*Fleet fleet = new Fleet();
+      Fleet fleet = new Fleet();
 
       for (int i = 0; i < 3; i++)
          fleet.updateFleet(ShipType.ST_SUB);
@@ -35,6 +35,7 @@ public class PhaseOneTester
          fleet.updateFleet(ShipType.ST_AIRCRAFT_CARRIER);
       System.out.println(fleet.gameOver()); // true
       
+      /*
       // Test your board class    
       ComputerBoard computer = new ComputerBoard("compFleet.txt");
       UserBoard user = new UserBoard("userFleet.txt");
