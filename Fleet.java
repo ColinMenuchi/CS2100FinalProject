@@ -1,3 +1,8 @@
+/**
+ * Represents a Fleet of ships for the game Battleship.
+ * A fleet has five ships.
+ */
+
 public class Fleet 
 {
     // Instance Variables
