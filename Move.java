@@ -13,7 +13,7 @@ public class Move
     public Move(int row, int column)
     {
         this.row = row;
-        this.col = column;
+        this.col = column + 1;
     }
 
     /**
