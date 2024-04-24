@@ -124,8 +124,7 @@ public class UserBoard extends Board {
     @Override
     public String toString() {
         CellStatus cellStatus;
-        String boardAsString = "USER\n";
-        boardAsString += "  1 2 3 4 5 6 7 8 9 10\n";
+        String boardAsString = "  1 2 3 4 5 6 7 8 9 10\n";
         char rowLetter = 'A';
 
         // Iterate through each cell on the board,
