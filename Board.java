@@ -3,7 +3,6 @@
  * the popular game Battle Ship. Serves as the superclass
  * for a player board and a computer board. 
  */
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
@@ -28,6 +27,7 @@ public abstract class Board {
 
         // Set all cells to CellStatus.NOTHING.
         for (int row = 0; row < 10; row++) {
+            layout.add(new ArrayList<CellStatus>(SIZE));
             for (int col = 0; col < 10; col++) {
                 layout.get(row).add(CellStatus.NOTHING);
             }
@@ -40,6 +40,7 @@ public abstract class Board {
             inputFile = new Scanner(new File(filename));
         } catch (FileNotFoundException e) {
             System.out.println("Invalid file, terminating program.");
+            System.exit(1);
         }
         String[] shipArray;
         CellStatus shipType;
