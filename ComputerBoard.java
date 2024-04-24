@@ -68,16 +68,20 @@ public class ComputerBoard extends Board {
     @Override
     public String toString() {
         CellStatus cellStatus;
-        String boardAsString = "";
+        String boardAsString = "COMPUTER\n";
+        boardAsString += "  1 2 3 4 5 6 7 8 9 10\n";
+        char rowLetter = 'A';
 
         // Iterate through each cell on the board,
         // concatenating each to boardAsString
         for (int row = 0; row < 10; row++) {
+            boardAsString += rowLetter + " ";
             for (int col = 0; col < 10; col++) {
                 cellStatus = getLayout().get(row).get(col);
-                boardAsString = boardAsString + cellStatus.toString().substring(0, 1) + " ";
+                boardAsString += cellStatus.toString().substring(0, 1) + " ";
             }
-            boardAsString = boardAsString + "\n";
+            boardAsString += "\n";
+            rowLetter = (char)(rowLetter + 1);
         }
         return boardAsString;
     }
