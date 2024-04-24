@@ -1,3 +1,10 @@
+/**
+ * A class that represents a Game object. A game has
+ * a ComputerBoard and a UserBoard. It has one
+ * constructor methods to make moves on each board,
+ * methods to determine if the game is over, and a
+ * String representation.
+ */
 public class Game {
     // Instance variables
     private ComputerBoard computer;
