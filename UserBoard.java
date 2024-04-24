@@ -61,8 +61,8 @@ public class UserBoard extends Board {
         Move selectedMove = null;
         while (!validMove) {
             // Pick a random cell
-            moveChoice[0] = rand.nextInt(10) + 1;
-            moveChoice[1] = rand.nextInt(10) + 1;
+            moveChoice[0] = rand.nextInt(10);
+            moveChoice[1] = rand.nextInt(10);
             selectedMove = new Move(moveChoice[0], moveChoice[1]);
 
             // Check if this Move is still available

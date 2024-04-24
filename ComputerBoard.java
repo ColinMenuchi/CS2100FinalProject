@@ -29,7 +29,8 @@ public class ComputerBoard extends Board {
      */
     public String makePlayerMove(Move playersMove) {
         // Get status of the chosen cell
-        CellStatus cellStatus = getLayout().get(playersMove.row()).get(playersMove.col());
+        // Use col - 1 to account for the 0 indexed ArrayList
+        CellStatus cellStatus = getLayout().get(playersMove.row()).get(playersMove.col() - 1);
 
         // Determine the ship at that cell if any
         ShipType shipAtCell = switch (cellStatus) {

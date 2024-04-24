@@ -52,10 +52,10 @@ public abstract class Board {
         while (inputFile.hasNext()) {
             shipArray = inputFile.nextLine().split(" ");
             shipSymbol = shipArray[0];
-            startRow = shipArray[1].charAt(0) - 'A';
-            endRow = shipArray[2].charAt(0) - 'A';
-            startCol = Integer.parseInt(shipArray[1].substring(0, 1));
-            endCol = Integer.parseInt(shipArray[2].substring(0, 1));
+            startRow = (shipArray[1].charAt(0) - 'A');
+            endRow = (shipArray[2].charAt(0) - 'A');
+            startCol = Integer.parseInt(shipArray[1].substring(1)) - 1;
+            endCol = Integer.parseInt(shipArray[2].substring(1)) - 1;
 
             // Determine the Type of Ship
             shipType = switch (shipSymbol) {
@@ -69,13 +69,13 @@ public abstract class Board {
 
             // If start row matches end row, ship is horizontal
             if (startRow == endRow) {
-                for (int col = startCol; col < endCol; col++) {
+                for (int col = startCol; col <= endCol; col++) {
                     layout.get(startRow).set(col, shipType);
                 }
             }
             // Otherwise, ship is vertical.
             else {
-                for (int row = startRow; row < endRow; row++) {
+                for (int row = startRow; row <= endRow; row++) {
                     layout.get(row).set(startCol, shipType);
                 }
             }
@@ -97,7 +97,8 @@ public abstract class Board {
      */
     public CellStatus applyMoveToLayout(Move move) {
         // Get the chosen Cell
-        CellStatus originalStatus = layout.get(move.row()).get(move.col());
+        // I use col - 1 to account for the board being 1 indexed
+        CellStatus originalStatus = layout.get(move.row()).get(move.col() - 1);
         CellStatus newStatus = null;
 
         // Determine what is at the chosen Cell
@@ -113,7 +114,7 @@ public abstract class Board {
         };
 
         // Update the chosen Cell
-        layout.get(move.row()).set(move.col(), newStatus);
+        layout.get(move.row()).set(move.col() - 1, newStatus);
 
         // Return the original status of the Cell
         return originalStatus;
@@ -129,7 +130,7 @@ public abstract class Board {
     public boolean moveAvailable(Move move)
     {
         CellStatus selectedCell;
-        selectedCell = layout.get(move.row()).get(move.col());
+        selectedCell = layout.get(move.row()).get(move.col() - 1);
         return selectedCell == CellStatus.NOTHING;
     }
 
