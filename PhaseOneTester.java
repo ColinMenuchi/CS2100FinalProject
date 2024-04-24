@@ -4,7 +4,7 @@ public class PhaseOneTester
 {
    public static void main(String [] args) throws IOException
    {
-      // Test your Move class
+      /*// Test your Move class
       Move m = new Move(1,1);
       System.out.println(m);  // B2
       m = new Move("E1");
@@ -34,8 +34,8 @@ public class PhaseOneTester
       for (int i = 0; i < 5; i++)
          fleet.updateFleet(ShipType.ST_AIRCRAFT_CARRIER);
       System.out.println(fleet.gameOver()); // true
+      */
       
-      /*
       // Test your board class    
       ComputerBoard computer = new ComputerBoard("compFleet.txt");
       UserBoard user = new UserBoard("userFleet.txt");
@@ -73,6 +73,6 @@ public class PhaseOneTester
          result = computer.makePlayerMove(move);
          System.out.println(computer);
       } while (result == null);
-      */
+      
    }
 }
