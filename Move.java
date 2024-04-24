@@ -1,3 +1,10 @@
+/**
+ * A class to represent a move in the game Battleship.
+ * A Move has a row and a column. It can be constructed
+ * by either specifying the row and column or by inputting
+ * a desired cell as a string. You can get a Move's row
+ * and column, and it has has a string representation.
+ */
 public class Move
 {
     // Instance Variables
