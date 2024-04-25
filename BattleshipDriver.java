@@ -7,6 +7,10 @@ public class BattleshipDriver
         // Create Game
         Game game = new Game();
 
+        // Display a welcome message and game boards
+        System.out.println("Welcome to Battleship!\n\n");
+        System.out.println(game);
+
         // Decide who goes first
         boolean playersTurn, computersTurn;
         Random rand = new Random();
@@ -15,11 +19,13 @@ public class BattleshipDriver
         {
             playersTurn = true;
             computersTurn = false;
+            System.out.println("You won the coin toss and get to go first.");
         }
         else
         {
             playersTurn = false;
             computersTurn = true;
+            System.out.println("The computer won the coin toss and gets to go first.");
         }
 
         // Game Loop
@@ -35,7 +41,7 @@ public class BattleshipDriver
              */
             if (playersTurn)
             {
-                System.out.print("Enter a Move: ");
+                System.out.print("Your Turn: ");
                 playersMove = keyboard.nextLine();
                 game.makePlayerMove(playersMove);
                 playersTurn = false;
@@ -48,6 +54,8 @@ public class BattleshipDriver
              */
             else if (computersTurn)
             {
+                System.out.println("Computer's turn. Press any key to continue. ");
+                keyboard.nextLine();
                 game.makeComputerMove();
                 computersTurn = false;
                 playersTurn = true;
