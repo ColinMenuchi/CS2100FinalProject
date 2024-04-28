@@ -44,7 +44,12 @@ public class Game {
      *         null otherwise.
      */
     public String makePlayerMove(String playersMove) {
-        return computer.makePlayerMove(new Move(playersMove));
+        if (computer.moveAvailable(new Move(playersMove)))
+        {
+            return computer.makePlayerMove(new Move(playersMove));
+        }
+        System.out.println("That was a duplicate move. No action taken.");
+        return null;
     }
 
     /**

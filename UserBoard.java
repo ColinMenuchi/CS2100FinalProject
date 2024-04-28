@@ -29,8 +29,8 @@ public class UserBoard extends Board {
         this.rand = new Random();
         this.moves = new ArrayList<Move>();
         // Fill the moves with all possible Moves
-        for (int row = 1; row <= 10; row++) {
-            for (int col = 1; col <= 10; col++) {
+        for (int row = 0; row < 10; row++) {
+            for (int col = 0; col < 10; col++) {
                 moves.add(new Move(row, col));
             }
         }
@@ -56,52 +56,67 @@ public class UserBoard extends Board {
     public String[] makeComputerMove() {
         // Select a random move until a valid move
         // is chosen
-        boolean validMove = false;
-        int[] moveChoice = new int[2];
+        int moveIndex;
         Move selectedMove = null;
-        while (!validMove) {
-            // Pick a random cell
-            moveChoice[0] = rand.nextInt(10);
-            moveChoice[1] = rand.nextInt(10);
-            selectedMove = new Move(moveChoice[0], moveChoice[1]);
-
-            // Check if this Move is still available
-            validMove = moveAvailable(selectedMove);
-            // Otherwise, repeat this process
-        }
+       
+        // Pick a random cell
+        moveIndex = rand.nextInt(moves.size());
+        selectedMove = moves.remove(moveIndex);
+        
         // Make Move against the player board
         CellStatus cellHit = applyMoveToLayout(selectedMove);
 
         // Update the correct ship in the
         // Fleet if a ship was hit
+        // If a ship sank, indicate that in the
+        // return message.
+        String returnMessage = null;
         boolean shipSank = false;
         switch (cellHit) {
             case AIRCRAFT_CARRIER: {
                 shipSank = getFleet().updateFleet(ShipType.ST_AIRCRAFT_CARRIER);
+                if (shipSank)
+                {
+                    returnMessage = "You sunk my Aircraft Carrier!";
+                }
                 break;
             }
             case BATTLESHIP: {
                 shipSank = getFleet().updateFleet(ShipType.ST_BATTLESHIP);
+                if (shipSank)
+                {
+                    returnMessage = "You sunk my Battleship!";
+                }
                 break;
             }
             case CRUISER: {
                 shipSank = getFleet().updateFleet(ShipType.ST_CRUISER);
+                if (shipSank)
+                {
+                    returnMessage = "You sunk my Cruiser!";
+                }
                 break;
             }
             case DESTROYER: {
                 shipSank = getFleet().updateFleet(ShipType.ST_DESTROYER);
+                if (shipSank)
+                {
+                    returnMessage = "You sunk my Destroyer!";
+                }
                 break;
             }
             case SUB: {
                 shipSank = getFleet().updateFleet(ShipType.ST_SUB);
+                if (shipSank)
+                {
+                    returnMessage = "You sunk my Sub!";
+                }
                 break;
             }
-        }
-        // If a ship sank, indicate that in the
-        // return message.
-        String returnMessage = null;
-        if (shipSank) {
-            returnMessage = "You sunk my Battleship!";
+            default:
+            {
+                shipSank = false;
+            }
         }
 
         // Return the array with the move and

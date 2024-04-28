@@ -26,9 +26,9 @@ public abstract class Board {
         layout = new ArrayList<ArrayList<CellStatus>>(SIZE);
 
         // Set all cells to CellStatus.NOTHING.
-        for (int row = 0; row < 10; row++) {
+        for (int row = 0; row < SIZE; row++) {
             layout.add(new ArrayList<CellStatus>(SIZE));
-            for (int col = 0; col < 10; col++) {
+            for (int col = 0; col < SIZE; col++) {
                 layout.get(row).add(CellStatus.NOTHING);
             }
         }
@@ -102,19 +102,31 @@ public abstract class Board {
         CellStatus newStatus = null;
 
         // Determine what is at the chosen Cell
-        newStatus = switch(originalStatus)
+        if (!(originalStatus == CellStatus.NOTHING_HIT ||
+        originalStatus == CellStatus.AIRCRAFT_CARRIER_HIT ||
+        originalStatus == CellStatus.BATTLESHIP_HIT ||
+        originalStatus == CellStatus.CRUISER_HIT ||
+        originalStatus == CellStatus.DESTROYER_HIT ||
+        originalStatus == CellStatus.SUB_HIT ||
+        originalStatus == CellStatus.AIRCRAFT_CARRIER_SUNK ||
+        originalStatus == CellStatus.BATTLESHIP_SUNK ||
+        originalStatus == CellStatus.CRUISER_SUNK ||
+        originalStatus == CellStatus.DESTROYER_SUNK ||
+        originalStatus == CellStatus.SUB_SUNK))
         {
-            case NOTHING -> CellStatus.NOTHING_HIT;
-            case DESTROYER -> CellStatus.DESTROYER_HIT;
-            case AIRCRAFT_CARRIER -> CellStatus.AIRCRAFT_CARRIER_HIT;
-            case BATTLESHIP -> CellStatus.BATTLESHIP_HIT;
-            case CRUISER -> CellStatus.CRUISER_HIT;
-            case SUB -> CellStatus.SUB_HIT;
-            default -> CellStatus.NOTHING_HIT;
-        };
-
-        // Update the chosen Cell
-        layout.get(move.row()).set(move.col() - 1, newStatus);
+            newStatus = switch(originalStatus)
+            {
+                case NOTHING -> CellStatus.NOTHING_HIT;
+                case DESTROYER -> CellStatus.DESTROYER_HIT;
+                case AIRCRAFT_CARRIER -> CellStatus.AIRCRAFT_CARRIER_HIT;
+                case BATTLESHIP -> CellStatus.BATTLESHIP_HIT;
+                case CRUISER -> CellStatus.CRUISER_HIT;
+                case SUB -> CellStatus.SUB_HIT;
+                default -> CellStatus.NOTHING_HIT;
+            };
+            // Update the chosen Cell
+            layout.get(move.row()).set(move.col() - 1, newStatus);
+        }
 
         // Return the original status of the Cell
         return originalStatus;
@@ -131,7 +143,12 @@ public abstract class Board {
     {
         CellStatus selectedCell;
         selectedCell = layout.get(move.row()).get(move.col() - 1);
-        return selectedCell == CellStatus.NOTHING;
+        return selectedCell == CellStatus.NOTHING ||
+        selectedCell == CellStatus.AIRCRAFT_CARRIER ||
+        selectedCell == CellStatus.BATTLESHIP ||
+        selectedCell == CellStatus.CRUISER ||
+        selectedCell == CellStatus.DESTROYER ||
+        selectedCell == CellStatus.SUB;
     }
 
     /**
